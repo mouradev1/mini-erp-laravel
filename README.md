@@ -28,7 +28,7 @@ Sistema simples de ERP para gestão de produtos, pedidos, cupons e estoque, dese
 
 1. **Clone o repositório:**
    ```sh
-   git clone <seu-repo>
+   git clone https://github.com/mouradev1/mini-erp-laravel.git
    cd mini-erp
    ```
 
