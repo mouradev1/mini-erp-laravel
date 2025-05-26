@@ -43,19 +43,13 @@ Sistema simples de ERP para gestão de produtos, pedidos, cupons e estoque, dese
    docker-compose up --build
    ```
 
-4. **Acesse o container da aplicação:**
+4. **Rode as migrations/seeders:**
    ```sh
-   docker exec -it mini-erp-app bash
+    docker exec -it mini-erp-app php artisan migrate --seed
+
    ```
 
-5. **Instale as dependências e rode as migrations/seeders:**
-   ```sh
-   composer install
-   php artisan key:generate
-   php artisan migrate --seed
-   ```
-
-6. **Acesse o sistema:**
+5. **Acesse o sistema:**
    - Aplicação: [http://localhost:8000](http://localhost:8000)
    - MailHog (visualizar e-mails): [http://localhost:8025](http://localhost:8025)
 
@@ -107,16 +101,6 @@ Sistema simples de ERP para gestão de produtos, pedidos, cupons e estoque, dese
   MAIL_HOST=mailhog
   MAIL_PORT=1025
   ```
-
----
-
-## Scripts úteis
-
-- **Executar migrations e seeders:**
-  ```sh
-    docker exec -it mini-erp-app php artisan migrate --seed
-
- ```
 
 ---
 
