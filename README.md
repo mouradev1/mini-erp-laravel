@@ -81,7 +81,7 @@ Sistema simples de ERP para gestão de produtos, pedidos, cupons e estoque, dese
   ```
 - Exemplo de chamada:
   ```sh
-  curl -X POST http://localhost:8000/webhook \
+  curl -X POST http://localhost:8000/api/webhook \
     -H "Content-Type: application/json" \
     -d '{"id":1,"status":"cancelado"}'
   ```
