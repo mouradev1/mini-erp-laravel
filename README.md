@@ -31,6 +31,7 @@ Sistema simples de ERP para gestão de produtos, pedidos, cupons e estoque, dese
    git clone https://github.com/mouradev1/mini-erp-laravel.git
    cd mini-erp-laravel
    cp .env.example .env
+   composer install
    ```
 
 2. **Crie as pastas necessárias:**
@@ -45,7 +46,7 @@ Sistema simples de ERP para gestão de produtos, pedidos, cupons e estoque, dese
 
 4. **Rode as migrations/seeders:**
    ```sh
-    docker exec -it mini-erp-app php artisan migrate --seed
+    docker exec -it mini-erp-app php artisan migrate --seed && php artisan key:generate
 
    ```
 
