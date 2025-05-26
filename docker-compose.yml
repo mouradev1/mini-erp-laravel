@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    container_name: mini-erp-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mailhog
+      - db
+    networks:
+      - app_network
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: erp
+      DB_USERNAME: root
+      DB_PASSWORD: docker
+      MAIL_MAILER: smtp
+      MAIL_HOST: mailhog
+      MAIL_PORT: 1025
+      MAIL_USERNAME: null
+      MAIL_PASSWORD: null
+      MAIL_ENCRYPTION: null
+      MAIL_FROM_ADDRESS: "hello@example.com"
+      MAIL_FROM_NAME: "Mini ERP"
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mini-erp-mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - app_network
+
+  db:
+    image: mysql:8.0
+    container_name: mini-erp-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: erp
+      MYSQL_ROOT_PASSWORD: docker
+    ports:
+      - "3307:3306" # Porta alterada para evitar conflito
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
